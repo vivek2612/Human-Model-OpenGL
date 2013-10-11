@@ -242,8 +242,16 @@ void keyboard(unsigned char key, int x, int y){
   					humanObject.torsoz += 2.0f;
   			}
   			else if (mode == 4){
-  				if(humanObject.leftUpperArmz<=0.0f)
-  					humanObject.leftUpperArmz+=2.0f;
+  				if((((int)humanObject.leftUpperArmx)%360 <= 20.0f || ((int)humanObject.leftUpperArmx)%360 >= 340.0f) && humanObject.leftUpperArmy >= 10.0f){
+  					/*cout<<"problem case"<<endl;
+  					cout<<"angle"<<":"<<4.0/7.0*humanObject.leftLowerArmx<<endl;*/
+  					if(humanObject.leftUpperArmz < 0.0f && humanObject.leftUpperArmz < 4.0/7.0*humanObject.leftLowerArmx ){
+  						humanObject.leftUpperArmz+=2.0f;
+            }
+  				}else{
+  					if(humanObject.leftUpperArmz < 0.0f)
+  						humanObject.leftUpperArmz += 2.0f;
+  				}
   			}
   			else if (mode == 6){
   				if(humanObject.rightUpperArmz<180.0f)
@@ -292,9 +300,17 @@ void keyboard(unsigned char key, int x, int y){
   					humanObject.leftUpperArmz -= 2.0f;
   			}
   			else if(mode == 6){
-  				// cout<<"AAYA"<<endl;
-  				if(humanObject.rightUpperArmz > 0)
-  					humanObject.rightUpperArmz -= 2.0f;
+  				// cout<<fabs(4.0/7.0*humanObject.rightLowerArmx)<<endl;
+  				if((((int)humanObject.rightLowerArmx)%360 < 20.0f || ((int)humanObject.rightLowerArmx)%360 > 340.0f ) && humanObject.rightUpperArmy < -10.0f){
+            if(humanObject.rightUpperArmz > 0.0f && humanObject.rightUpperArmz > fabs(4.0/7.0*humanObject.rightLowerArmx)){
+              humanObject.rightUpperArmz -= 2.0f;
+            }
+          }
+          else{
+            if(humanObject.rightUpperArmz > 0.0f){
+              humanObject.rightUpperArmz -= 2.0f;
+            }
+          }
   			}
   			else if(mode == 8){
   				if(humanObject.hipz > -45.0f)
@@ -400,12 +416,12 @@ void keyboard(unsigned char key, int x, int y){
       		}
       		else if(mode == 5){
       			if(((int)humanObject.leftUpperArmx )%360<= 10.0f && ((int)humanObject.leftUpperArmx)%360 >= -10.0f && humanObject.leftUpperArmy >= 45.0f){
-      				cout<<"First"<<":"<<humanObject.leftUpperArmx<<":"<<humanObject.leftUpperArmy<<endl;
+      				// cout<<"First"<<":"<<humanObject.leftUpperArmx<<":"<<humanObject.leftUpperArmy<<endl;
       				if(humanObject.leftLowerArmx >= -1*(180 - ((90+humanObject.leftUpperArmz)+(180.0/M_PI)*acos(0.75*(sin(-1*humanObject.leftUpperArmz))))))
       					humanObject.leftLowerArmx -= 2.0f;
       			}
       			else{
-      				cout<<"second"<<":"<<humanObject.leftUpperArmx<<":"<<humanObject.leftUpperArmy<<endl;
+      				// cout<<"second"<<":"<<humanObject.leftUpperArmx<<":"<<humanObject.leftUpperArmy<<endl;
       				if(humanObject.leftLowerArmx >= -135.0f )
       					humanObject.leftLowerArmx -= 2.0f;
       			}
@@ -474,19 +490,23 @@ void keyboard(unsigned char key, int x, int y){
       		else if(mode == 4){
       			// Left Upper Arm Rotation
       			// cout<<(90+humanObject.leftUpperArmz)<<":"<<(180.0/M_PI)*acos(0.75*(sin(-1*humanObject.leftUpperArmz))) <<endl;
-      			if(humanObject.leftUpperArmz < -90.0f){
-      				if(humanObject.leftUpperArmy <= 90.0f){
-      					humanObject.leftUpperArmy += 2.0f;
-      				}
-      			}
-      			else if(humanObject.leftLowerArmx > (180 - ((90+humanObject.leftUpperArmz) + (180.0/M_PI)*acos(0.75*(sin(-1*humanObject.leftUpperArmz))) ))){
-      				if(humanObject.leftUpperArmy <= 30.0f)
-      					humanObject.leftUpperArmy += 2.0f;
-      			}
-      			else
-      				if(humanObject.leftUpperArmy <= 90.0f){
-      					humanObject.leftUpperArmy += 2.0f;
-      				}
+            if(((int)humanObject.rightUpperArmx )%360<= 20.0f || ((int)humanObject.rightUpperArmx)%360 >= 340.0f){
+              // cout<<"problem case"<<endl;
+              cout<<humanObject.leftUpperArmz<<":"<<humanObject.leftLowerArmx<<endl;
+              if(humanObject.leftUpperArmz > 4.0/7.0*humanObject.leftLowerArmx){
+                if(humanObject.leftUpperArmy < 30.0f)
+                  humanObject.leftUpperArmy += 2.0f;
+              }else{
+                // cout<<"case 2"<<endl;
+                if(humanObject.leftUpperArmy < 90.0f)
+                  humanObject.leftUpperArmy += 2.0f;
+              }
+            }
+            else{
+              // cout<<"no roblem"<<endl;
+              if(humanObject.leftUpperArmy < 90.0f)
+                humanObject.leftUpperArmy += 2.0f;
+            }
       		}
       		else if(mode == 6){
       			// Head Rotation
@@ -536,21 +556,24 @@ void keyboard(unsigned char key, int x, int y){
       				humanObject.leftUpperArmy-=2.0f;
       		}
       		else if(mode == 6){
-      			// Left Upper Arm Rotation
-      			// cout<<(90+humanObject.leftUpperArmz)<<":"<<(180.0/M_PI)*acos(0.75*(sin(-1*humanObject.leftUpperArmz))) <<endl;
-      			if(humanObject.rightUpperArmz > 90.0f){
-      				if(humanObject.rightUpperArmy >= -90.0f){
-      					humanObject.rightUpperArmy -= 2.0f;
-      				}
-      			}
-      			else if(humanObject.rightLowerArmx > (180 - ((90-humanObject.rightUpperArmz) + (180.0/M_PI)*acos(0.75*(sin(humanObject.rightUpperArmz))) ))){
-      				if(humanObject.rightUpperArmy >= -30.0f)
-      					humanObject.rightUpperArmy -= 2.0f;
-      			}
-      			else
-      				if(humanObject.rightUpperArmy >= -90.0f){
-      					humanObject.rightUpperArmy -= 2.0f;
-      				}
+      			// Right Upper Arm Rotation
+            if(((int)humanObject.rightUpperArmx)%360 <= 20.0f || ((int)humanObject.rightUpperArmx)%360 >= 340.0f){
+              // cout<<"problem"<<endl;
+              if(humanObject.rightUpperArmz < fabs(4.0/7.0*humanObject.rightLowerArmx)){
+                if(humanObject.rightUpperArmy > -30.0f){
+                  humanObject.rightUpperArmy -= 2.0f;
+                }
+              }
+              else  if(humanObject.rightUpperArmy > -90.0f){
+                      humanObject.rightUpperArmy -= 2.0f;
+                    }
+              else{
+                // cout<<"no problem"<<endl;
+                if(humanObject.rightUpperArmy > -90.0f){
+                  humanObject.rightUpperArmy -= 2.0f;
+                }
+              }
+            }
       		}
       		else if(mode == 8){
       			if(humanObject.hipy > -30.0f)
