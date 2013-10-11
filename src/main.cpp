@@ -19,7 +19,8 @@ Box boxObject;
 
 
 
-float eyex=0.0f,eyey=0.0f,eyez=0.0f;
+float eyex=0.0f,eyey=0.0f;
+float eyez=20.0f;
 Human humanObject;
 int mode = -1;
 /* Initialize OpenGL Graphics */
@@ -39,11 +40,11 @@ void display() {
    glEnable(GL_TEXTURE_2D);
    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
    glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
-   gluLookAt(eyex, eyey, eyez, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+   
    glLoadIdentity();
-   glTranslatef( 0.0f, 0.0f, -20.0f);
+   gluLookAt(eyex, eyey, eyez, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
    glRotatef(degree, 0.0f, 1.0f, 0.0f);
-   glRotatef(verticalDegree, 1.0f, 0.0f, 0.0f);
+   glRotatef(verticalDegree, 0.0f, 0.0f, 1.0f);
    
    glColor3f(1.0f, 1.0f, 1.0f);   
    
@@ -75,12 +76,6 @@ void mouse(int button, int state, int x, int y){
     glutPostRedisplay();
 }
 
-void inputKey(int key, int x, int y){
-   switch(key){
-      case GLUT_KEY_LEFT : degree -= 1.0f;break;
-      case GLUT_KEY_RIGHT : degree += 1.0f;break;
-   }
-}
 
 /*Body movement scheme is designed in the following way
 There are modes which designate which body part's degree of freedom are controlled by the keys 'z', 'x' and 'c'
@@ -105,10 +100,20 @@ Other than that the box lid angle is controlled by '=' and '-'
 
 All joints and box-lid have certain boundaries till which they can rotate in various directions
 
+ALso, r is for reset
+
 Also w, s, a & d control the camera
 */
 
-
+void inputKey(int key, int x, int y) 
+{
+  switch (key) {
+  case GLUT_KEY_LEFT : degree-= 5.0f;glutPostRedisplay();break;
+  case GLUT_KEY_RIGHT : degree+=5.0f ;glutPostRedisplay();break;
+  case GLUT_KEY_UP : eyez-=1.0f; glutPostRedisplay(); break;
+  case GLUT_KEY_DOWN : eyez+=1.0f;glutPostRedisplay(); break;
+  }
+}
 
 void keyboard(unsigned char key, int x, int y){
    switch(key){
@@ -198,29 +203,15 @@ void keyboard(unsigned char key, int x, int y){
          glutPostRedisplay();
          break;
       }
-      case 'a':
-      {
-         degree-=5.0f;
-         glutPostRedisplay();
-         break;
-      }
-      case 'd':
-      {
-         degree+=5.0f;
-         glutPostRedisplay();
-         break;
-      }
       case 'w':
       {
          verticalDegree-=3.0f;
-         // eyez-=0.1f;
          glutPostRedisplay();
          break;
       }
       case 's':
       {
          verticalDegree+=3.0f;
-         // eyez+=10.1f;
          glutPostRedisplay();
          break;
       }

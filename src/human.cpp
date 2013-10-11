@@ -29,6 +29,7 @@ void Human::createNeckList(){
 		glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 		gluQuadricTexture(quadratic,1);
 		gluCylinder(quadratic,0.6f,0.6f,0.6f,32,32);
+		gluDisk(quadratic,0.0f,0.6f,32,32);
 		glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
 	glEndList();
 
@@ -44,6 +45,12 @@ void Human::createTorsoList(){
 		glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 		gluQuadricTexture(quadratic,1);
 		gluCylinder(quadratic,2.5f,2.0f,5.0f,32,32);
+		gluDisk(quadratic,0.0f,2.5f,32,32);
+
+		glPushMatrix();
+			glTranslatef(0.0,0.0,5.0f);
+			gluDisk(quadratic,0.0f,2.0f,32,32);
+		glPopMatrix();
 		glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
 	glEndList();
 }
@@ -59,6 +66,11 @@ void Human::createUpperArmList(){
 		glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 		gluQuadricTexture(quadratic,1);
 		gluCylinder(quadratic,0.6f,0.6f,3.0f,32,32);
+		gluDisk(quadratic,0.0f,0.6f,32,32);
+		glPushMatrix();
+			glTranslatef(0.0,0.0,3.0f);
+			gluDisk(quadratic,0.0f,0.6f,32,32);
+		glPopMatrix();
 		glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
 	glEndList();
 }
@@ -72,6 +84,11 @@ void Human::createLowerArmList(){
 		glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 		gluQuadricTexture(quadratic,1);
 		gluCylinder(quadratic,0.6f,0.4f,4.0f,32,32);
+		gluDisk(quadratic,0.0f,0.4f,32,32);
+		glPushMatrix();
+			glTranslatef(0.0,0.0,4.0f);
+			gluDisk(quadratic,0.0f,0.4f,32,32);
+		glPopMatrix();
 		glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
 	glEndList();
 }
@@ -86,6 +103,12 @@ void Human::createHipList(){
 		glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 		gluQuadricTexture(quadratic,1);
 		gluCylinder(quadratic,2.1f,2.1f,1.0f,32,32);
+
+		glPushMatrix();
+			glTranslatef(0.0,0.0,1.0f);
+			gluDisk(quadratic,0.0f,2.1f,32,32);
+		glPopMatrix();
+
 		glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
 	glEndList();
 }
@@ -116,6 +139,12 @@ void Human::createLowerLegList(){
 		glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 		gluQuadricTexture(quadratic,1);
 		gluCylinder(quadratic,1.0f,0.8f,6.0f,32,32);
+
+		glPushMatrix();
+			glTranslatef(0.0,0.0,6.0f);
+			gluDisk(quadratic,0.0f,0.8f,32,32);
+		glPopMatrix();
+
 		glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
 	glEndList();
 }
