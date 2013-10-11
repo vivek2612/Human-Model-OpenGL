@@ -237,7 +237,7 @@ void keyboard(unsigned char key, int x, int y){
   					humanObject.torsoz += 2.0f;
   			}
   			else if (mode == 4){
-  				if((((int)humanObject.leftUpperArmx)%360 <= 20.0f || ((int)humanObject.leftUpperArmx)%360 >= 340.0f) && humanObject.leftUpperArmy >= 10.0f){
+  				if((((int)humanObject.leftUpperArmx)%360 <= 20.0f || ((int)humanObject.leftUpperArmx)%360 >= 340.0f) && humanObject.leftUpperArmy >= 30.0f){
   					/*cout<<"problem case"<<endl;
   					cout<<"angle"<<":"<<4.0/7.0*humanObject.leftLowerArmx<<endl;*/
   					if(humanObject.leftUpperArmz < 0.0f && humanObject.leftUpperArmz < 4.0/7.0*humanObject.leftLowerArmx ){
@@ -296,7 +296,7 @@ void keyboard(unsigned char key, int x, int y){
   			}
   			else if(mode == 6){
   				// cout<<fabs(4.0/7.0*humanObject.rightLowerArmx)<<endl;
-  				if((((int)humanObject.rightLowerArmx)%360 < 20.0f || ((int)humanObject.rightLowerArmx)%360 > 340.0f ) && humanObject.rightUpperArmy < -10.0f){
+  				if((((int)humanObject.rightLowerArmx)%360 < 20.0f || ((int)humanObject.rightLowerArmx)%360 > 340.0f ) && humanObject.rightUpperArmy < -30.0f){
             if(humanObject.rightUpperArmz > 0.0f && humanObject.rightUpperArmz > fabs(4.0/7.0*humanObject.rightLowerArmx)){
               humanObject.rightUpperArmz -= 2.0f;
             }
@@ -410,7 +410,7 @@ void keyboard(unsigned char key, int x, int y){
       			humanObject.leftUpperArmx-=2.0f;
       		}
       		else if(mode == 5){
-      			if((((int)humanObject.leftUpperArmx)%360 <= 20.0f || ((int)humanObject.leftUpperArmx)%360 >= 340.0f) && humanObject.leftUpperArmy >= 10.0f){
+      			if((((int)humanObject.leftUpperArmx)%360 <= 20.0f || ((int)humanObject.leftUpperArmx)%360 >= 340.0f) && humanObject.leftUpperArmy >= 30.0f){
               cout<<"problem case"<<endl;
               if(humanObject.leftUpperArmz > -90.0f && humanObject.leftLowerArmx > -135.0f && humanObject.leftLowerArmx > 7.0/4.0*humanObject.leftUpperArmz){
                 humanObject.leftLowerArmx -= 2.0f;
@@ -432,7 +432,7 @@ void keyboard(unsigned char key, int x, int y){
       			humanObject.rightUpperArmx-=2.0f;
       		}
       		else if(mode == 7){
-      			if((((int)humanObject.rightUpperArmx)%360 <= 20.0f || ((int)humanObject.rightUpperArmx)%360 >= 340.0f) && humanObject.rightUpperArmy < -10.0f){
+      			if((((int)humanObject.rightUpperArmx)%360 <= 20.0f || ((int)humanObject.rightUpperArmx)%360 >= 340.0f) && humanObject.rightUpperArmy < -30.0f){
               cout<<"problem case"<<endl;
               if(humanObject.rightUpperArmz < 90.0f && humanObject.rightLowerArmx > -135.0f && humanObject.rightLowerArmx > -1.0*7.0/4.0*humanObject.rightUpperArmz){
                 humanObject.rightLowerArmx -= 2.0f;
