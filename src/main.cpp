@@ -117,6 +117,10 @@ void keyboard(unsigned char key, int x, int y){
          exit(0);
          break;
       }
+      case 'r':{
+        humanObject.reset();
+        glutPostRedisplay();
+      }
       case '0':{
   		mode = 0;
 	    glutPostRedisplay();
@@ -415,32 +419,44 @@ void keyboard(unsigned char key, int x, int y){
       			humanObject.leftUpperArmx-=2.0f;
       		}
       		else if(mode == 5){
-      			if(((int)humanObject.leftUpperArmx )%360<= 10.0f && ((int)humanObject.leftUpperArmx)%360 >= -10.0f && humanObject.leftUpperArmy >= 45.0f){
-      				// cout<<"First"<<":"<<humanObject.leftUpperArmx<<":"<<humanObject.leftUpperArmy<<endl;
-      				if(humanObject.leftLowerArmx >= -1*(180 - ((90+humanObject.leftUpperArmz)+(180.0/M_PI)*acos(0.75*(sin(-1*humanObject.leftUpperArmz))))))
-      					humanObject.leftLowerArmx -= 2.0f;
-      			}
-      			else{
-      				// cout<<"second"<<":"<<humanObject.leftUpperArmx<<":"<<humanObject.leftUpperArmy<<endl;
-      				if(humanObject.leftLowerArmx >= -135.0f )
-      					humanObject.leftLowerArmx -= 2.0f;
-      			}
+      			if((((int)humanObject.leftUpperArmx)%360 <= 20.0f || ((int)humanObject.leftUpperArmx)%360 >= 340.0f) && humanObject.leftUpperArmy >= 10.0f){
+              cout<<"problem case"<<endl;
+              if(humanObject.leftUpperArmz > -90.0f && humanObject.leftLowerArmx > -135.0f && humanObject.leftLowerArmx > 7.0/4.0*humanObject.leftUpperArmz){
+                humanObject.leftLowerArmx -= 2.0f;
+              }
+              else if(humanObject.leftUpperArmz < -90.0f){
+                if(humanObject.leftLowerArmx > -135.0f){
+                  humanObject.leftLowerArmx -= 2.0f;
+                }
+              }
+            }
+            else{
+              if(humanObject.leftLowerArmx > -135.0f){
+                humanObject.leftLowerArmx -= 2.0f;
+              }
+            }
       		}
       		else if(mode == 6){
       			//Upper Arm Rotation
       			humanObject.rightUpperArmx-=2.0f;
       		}
       		else if(mode == 7){
-      			if(((int)humanObject.rightUpperArmx )%360<= 10.0f && ((int)humanObject.rightUpperArmx)%360 >= -10.0f && humanObject.rightUpperArmy <= -45.0f){
-      				// cout<<"First"<<":"<<humanObject.leftUpperArmx<<":"<<humanObject.leftUpperArmy<<endl;
-      				if(humanObject.rightLowerArmx >= -1*(180 - ((90-humanObject.rightUpperArmz)+(180.0/M_PI)*acos(0.75*(sin(humanObject.rightUpperArmz))))))
-      					humanObject.rightLowerArmx -= 2.0f;
-      			}
-      			else{
-      				// cout<<"second"<<":"<<humanObject.leftUpperArmx<<":"<<humanObject.leftUpperArmy<<endl;
-      				if(humanObject.rightLowerArmx >= -135.0f )
-      					humanObject.rightLowerArmx -= 2.0f;
-      			}
+      			if((((int)humanObject.rightUpperArmx)%360 <= 20.0f || ((int)humanObject.rightUpperArmx)%360 >= 340.0f) && humanObject.rightUpperArmy < -10.0f){
+              cout<<"problem case"<<endl;
+              if(humanObject.rightUpperArmz < 90.0f && humanObject.rightLowerArmx > -135.0f && humanObject.rightLowerArmx > -1.0*7.0/4.0*humanObject.rightUpperArmz){
+                humanObject.rightLowerArmx -= 2.0f;
+              }
+              else if(humanObject.rightUpperArmz > 90.0f){
+                if(humanObject.rightLowerArmx > -135.0f){
+                  humanObject.rightLowerArmx -= 2.0f;
+                }
+              }
+            }
+            else{
+              if(humanObject.rightLowerArmx > -135.0f){
+                humanObject.rightLowerArmx -= 2.0f;
+              }
+            }
       		}
       		else if(mode == 8){
       			if(humanObject.hipx > -45.0f)

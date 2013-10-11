@@ -254,3 +254,46 @@ Human::Human(){
 	leftLowerLegx=0.0f;
 	rightLowerLegx=0.0f;
 }
+
+void Human::reset(){
+	headx=0.0f;
+	heady=0.0f;
+	headz=0.0f;
+
+	neckx=0.0f;
+	necky=0.0f;
+	neckz=0.0f;
+
+	torsox=0.0f;
+	torsoy=0.0f;
+	torsoz=0.0f;
+
+	leftUpperArmx=0.0f;
+	leftUpperArmy=0.0f;
+	leftUpperArmz=-10.0f;
+
+	rightUpperArmx=0.0f;
+	rightUpperArmy=0.0f;
+	rightUpperArmz=10.0f;
+
+	leftLowerArmx=-10.0f;
+	rightLowerArmx=-50.0f;
+
+	hipx=0.0f;
+	hipy=0.0f;
+	hipz=0.0f;
+	hipTranslatex=0.0f;
+	hipTranslatey=0.0f;
+	hipTranslatez=0.0f;
+
+	leftUpperLegx=0.0f;
+	leftUpperLegy=0.0f;
+	leftUpperLegz=-5.0f;
+
+	rightUpperLegx=0.0f;
+	rightUpperLegy=0.0f;
+	rightUpperLegz=5.0f;
+
+	leftLowerLegx=0.0f;
+	rightLowerLegx=0.0f;
+}

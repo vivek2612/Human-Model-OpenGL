@@ -63,6 +63,7 @@ public:
 
 	void createAllLists();
 	void drawHuman();
+	void  reset();
 	Human();
 
 
