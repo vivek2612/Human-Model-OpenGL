@@ -8,11 +8,21 @@ void  Human::createHeadList(){
 		glScalef(0.9f,1.0f,1.0f);
 		Texture tex;
 		// humanTexture = tex.loadBMP_custom("./images/face.bmp");
-		glColor3f(0.0f, 1.0f, 0.2f);    
 		GLUquadricObj *quadratic;
 		quadratic = gluNewQuadric();
 		gluQuadricTexture(quadratic,1);
 		gluSphere(quadratic,1.3f,32,32);
+		glTranslatef(0.0f, 0.9f, 0.0f);
+		GLUquadricObj *quadratic1;
+		quadratic1 = gluNewQuadric();
+		glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+		gluCylinder(quadratic1,1.6f,1.6f,0.6f,32,32);
+		gluDisk(quadratic1,0.0f,1.6f,32,32);
+		glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+		glTranslatef(0.0f, 0.6f, 0.0f);
+		glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+		gluCylinder(quadratic1,1.0f,1.0f,0.7f,32,32);
+		gluDisk(quadratic1,0.0f,1.0f,32,32);
 	glPopMatrix();
 	glEndList();
 }
